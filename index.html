@@ -3,81 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohand Yasser | Data Analyst Portfolio</title>
 
+    <title>Mohand Yasser | Data Analyst</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <style>
 
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #0a0a0a;
+            background: #050505;
             color: #ffffff;
-            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1, h2, h3, h4, nav {
             font-family: 'Space Grotesk', sans-serif;
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #a3a3a3
+            );
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
         }
 
         .skill-tag {
-            background: linear-gradient(
-                135deg,
-                rgba(102, 126, 234, 0.2) 0%,
-                rgba(118, 75, 162, 0.2) 100%
-            );
-
-            border: 1px solid rgba(102, 126, 234, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
 
         .skill-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
         }
 
         .project-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
+            overflow: hidden;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
+            transform: translateY(-8px);
         }
 
         .project-overlay {
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
         }
 
         .nav-link {
@@ -87,11 +96,11 @@
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -4px;
-            left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            bottom: -5px;
+            left: 0;
+            background: white;
             transition: width 0.3s ease;
         }
 
@@ -100,55 +109,53 @@
         }
 
         .floating {
-            animation: float 6s ease-in-out infinite;
+            animation: floating 4s ease-in-out infinite;
         }
 
-        @keyframes float {
-
+        @keyframes floating {
             0%, 100% {
                 transform: translateY(0px);
             }
 
             50% {
-                transform: translateY(-20px);
+                transform: translateY(-10px);
             }
         }
 
         .grid-bg {
             background-image:
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(
+                    rgba(255,255,255,0.03) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.03) 1px,
+                    transparent 1px
+                );
 
             background-size: 50px 50px;
         }
 
         .blob {
-            position: absolute;
             filter: blur(80px);
-            opacity: 0.4;
-            z-index: -1;
-        }
-
-        .stat-number {
-            font-variant-numeric: tabular-nums;
+            opacity: 0.15;
         }
 
         .dashboard-preview {
-            transition: transform 0.5s ease;
-        }
-
-        .dashboard-container:hover .dashboard-preview {
-            transform: scale(1.05);
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.08),
+                rgba(255,255,255,0.02)
+            );
         }
 
         .contact-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             transition: all 0.3s ease;
         }
 
         .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px);
         }
 
         .section-reveal {
@@ -160,65 +167,63 @@
             transition: all 0.3s ease;
         }
 
-        .skill-icon:hover {
-            transform: translateY(-5px);
+        .skill-tag:hover .skill-icon {
+            transform: scale(1.1);
         }
 
     </style>
 </head>
 
 
-<body class="grid-bg">
+<body class="overflow-x-hidden">
+
+    <!-- Background -->
+    <div class="fixed inset-0 grid-bg pointer-events-none"></div>
+
+    <div class="fixed top-20 left-10 w-72 h-72 bg-purple-500 rounded-full blob pointer-events-none"></div>
+
+    <div class="fixed bottom-20 right-10 w-72 h-72 bg-blue-500 rounded-full blob pointer-events-none"></div>
 
 
-    <!-- ========================================================= -->
-    <!-- Navigation -->
-    <!-- ========================================================= -->
+    <!-- ================= NAVBAR ================= -->
 
-    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-lg border-b border-white/10">
 
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-            <div class="text-2xl font-bold gradient-text">
+            <a href="#home"
+               class="text-xl font-bold gradient-text">
                 MY.
-            </div>
+            </a>
 
-            <div class="hidden md:flex space-x-8">
+            <div class="hidden md:flex items-center gap-8">
 
-                <a href="#about"
-                   class="nav-link text-sm font-medium text-gray-300 hover:text-white transition">
+                <a href="#about" class="nav-link text-gray-300 hover:text-white">
                     About
                 </a>
 
-                <a href="#skills"
-                   class="nav-link text-sm font-medium text-gray-300 hover:text-white transition">
+                <a href="#skills" class="nav-link text-gray-300 hover:text-white">
                     Skills
                 </a>
 
-                <a href="#experience"
-                   class="nav-link text-sm font-medium text-gray-300 hover:text-white transition">
+                <a href="#experience" class="nav-link text-gray-300 hover:text-white">
                     Experience
                 </a>
 
-                <a href="#projects"
-                   class="nav-link text-sm font-medium text-gray-300 hover:text-white transition">
+                <a href="#projects" class="nav-link text-gray-300 hover:text-white">
                     Projects
                 </a>
 
-                <a href="#contact"
-                   class="nav-link text-sm font-medium text-gray-300 hover:text-white transition">
+                <a href="#contact" class="nav-link text-gray-300 hover:text-white">
                     Contact
                 </a>
 
             </div>
 
-            <button
-                onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})"
-                class="contact-btn px-6 py-2 rounded-full text-sm font-semibold text-white">
-
+            <a href="#contact"
+               class="hidden md:block px-5 py-2 rounded-full border border-white/20 hover:bg-white hover:text-black transition">
                 Hire Me
-
-            </button>
+            </a>
 
         </div>
 
@@ -226,282 +231,98 @@
 
 
 
-    <!-- ========================================================= -->
-    <!-- Hero Section -->
-    <!-- ========================================================= -->
+    <!-- ================= HERO ================= -->
 
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <section id="home"
+             class="min-h-screen flex items-center pt-24">
 
-        <div class="blob w-96 h-96 bg-purple-600 rounded-full top-20 -left-20"></div>
+        <div class="max-w-7xl mx-auto px-6 w-full">
 
-        <div class="blob w-96 h-96 bg-blue-600 rounded-full bottom-20 -right-20"></div>
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
 
+                <!-- Hero Text -->
 
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+                <div class="section-reveal">
 
+                    <p class="text-gray-400 mb-4 text-lg">
+                        Hi, I'm
+                    </p>
 
-            <div class="space-y-6 hero-content">
-
-                <div class="inline-block px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-purple-400 font-medium">
-
-                    Available for Freelance Work
-
-                </div>
-
-
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight">
-
-                    Hi, I'm
-                    <span class="gradient-text">
-                        Mohand Yasser
-                    </span>
-
-                    <br>
-
-                    <span class="text-gray-400 text-4xl md:text-6xl">
-                        Data Analyst
-                    </span>
-
-                </h1>
-
-
-                <p class="text-lg text-gray-400 max-w-lg leading-relaxed">
-
-                    Transforming raw data into meaningful insights that drive
-                    decision-making. Specializing in SQL, Python, Power BI,
-                    and interactive dashboard creation.
-
-                </p>
-
-
-                <div class="flex gap-4 pt-4">
-
-                    <button
-                        onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})"
-                        class="contact-btn px-8 py-4 rounded-full font-semibold text-white flex items-center gap-2">
-
-                        View My Work
-
-                        <i class="fas fa-arrow-right"></i>
-
-                    </button>
-
-
-                    <a href="#contact"
-                       class="px-8 py-4 rounded-full border border-white/20 font-semibold hover:bg-white/5 transition flex items-center gap-2">
-
-                        Contact Me
-
-                    </a>
-
-                </div>
-
-
-                <div class="flex gap-6 pt-8 text-gray-400">
-
-                    <a href="mailto:mohandyasserhussein@gmail.com"
-                       class="hover:text-purple-400 transition text-2xl">
-
-                        <i class="fas fa-envelope"></i>
-
-                    </a>
-
-
-                    <a href="tel:+2001014623795"
-                       class="hover:text-purple-400 transition text-2xl">
-
-                        <i class="fas fa-phone"></i>
-
-                    </a>
-
-
-                    <a href="https://www.linkedin.com/in/mohandyasser"
-                       target="_blank"
-                       class="hover:text-purple-400 transition text-2xl">
-
-                        <i class="fab fa-linkedin"></i>
-
-                    </a>
-
-
-                       <a href="https://github.com/mohandyasser" target="_blank" rel="noopener noreferrer" class="...">
-                         <i class="fab fa-github"></i>
-                   </a>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="relative floating">
-
-                <div class="relative w-full aspect-[3/4] max-w-md mx-auto">
-
-                    <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-3xl transform rotate-6"></div>
-
-                    <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-3xl transform -rotate-6"></div>
-
-
-                    <img src="profile photo.jpeg"
-                         alt="Mohand Yasser"
-                         class="relative w-full h-full object-cover rounded-3xl shadow-2xl border border-white/10">
-
-
-                    <!-- Floating Stats Cards -->
-
-                    <div class="absolute -bottom-6 -left-6 glass-card p-4 rounded-2xl animate-pulse">
-
-                        <div class="text-2xl font-bold gradient-text">
-                            2+
-                        </div>
-
-                        <div class="text-xs text-gray-400">
-                            Years Experience
-                        </div>
-
-                    </div>
-
-
-                    <div class="absolute -top-6 -right-6 glass-card p-4 rounded-2xl">
-
-                        <div class="text-2xl font-bold gradient-text">
-                            10+
-                        </div>
-
-                        <div class="text-xs text-gray-400">
-                            Projects Done
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-
-            <i class="fas fa-chevron-down text-2xl text-gray-500"></i>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ========================================================= -->
-    <!-- About Section -->
-    <!-- ========================================================= -->
-
-    <section id="about" class="py-20 section-reveal">
-
-        <div class="max-w-7xl mx-auto px-6">
-
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-
-
-                <div class="space-y-6">
-
-                    <h2 class="text-4xl font-bold mb-6">
-
-                        About
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                        Mohand
                         <span class="gradient-text">
-                            Me
+                            Yasser
                         </span>
+                    </h1>
 
+                    <h2 class="text-2xl md:text-3xl font-semibold text-gray-300 mb-6">
+                        Data Analyst
                     </h2>
 
-
-                    <p class="text-gray-400 leading-relaxed text-lg">
-
-                        Data Analysis is the process of transforming raw data
-                        into meaningful insights that support decision-making.
-                        It involves data cleaning, exploration, visualization,
-                        and interpretation to uncover patterns and trends.
-
+                    <p class="text-gray-400 text-lg leading-relaxed max-w-xl mb-8">
+                        Computer Science student passionate about data analysis,
+                        dashboards, machine learning, and transforming data
+                        into meaningful insights.
                     </p>
 
 
-                    <p class="text-gray-400 leading-relaxed">
+                    <!-- Buttons -->
 
-                        I use tools such as
-                        <span class="text-purple-400 font-semibold">
-                            SQL
-                        </span>
-                        for database querying,
+                    <div class="flex flex-wrap gap-4 mb-8">
 
-                        <span class="text-purple-400 font-semibold">
-                            Python (Pandas & NumPy)
-                        </span>
-                        for data processing,
+                        <a href="#projects"
+                           class="px-6 py-3 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition">
+                            View My Work
+                        </a>
 
-                        and
+                        <a href="#contact"
+                           class="px-6 py-3 rounded-full border border-white/20 hover:bg-white/10 transition">
+                            Contact Me
+                        </a>
 
-                        <span class="text-purple-400 font-semibold">
-                            Power BI/Excel
-                        </span>
-                        for creating interactive dashboards.
-
-                    </p>
+                    </div>
 
 
-                    <p class="text-gray-400 leading-relaxed">
+                    <!-- Social Icons -->
 
-                        My focus is on applying analytical thinking and
-                        problem-solving skills to real-world datasets,
-                        delivering clear visual reports that help drive
-                        data-driven decisions.
+                    <div class="flex items-center gap-5">
 
-                    </p>
+                        <!-- Email -->
 
-
-
-                    <!-- Education -->
-
-                    <div class="pt-6 border-t border-white/10">
-
-                        <h3 class="text-xl font-semibold mb-4 text-white">
-                            Education
-                        </h3>
+                        <a href="mailto:mohand.yasser@example.com"
+                           class="text-gray-400 hover:text-white transition">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
 
 
-                        <div class="glass-card p-6 rounded-2xl">
+                        <!-- Phone -->
 
-                            <div class="flex items-start gap-4">
-
-                                <div class="w-12 h-12 rounded-full bg-purple-600/20 flex items-center justify-center flex-shrink-0">
-
-                                    <i class="fas fa-graduation-cap text-purple-400"></i>
-
-                                </div>
+                        <a href="tel:+201000000000"
+                           class="text-gray-400 hover:text-white transition">
+                            <i class="fas fa-phone text-xl"></i>
+                        </a>
 
 
-                                <div>
+                        <!-- LinkedIn -->
 
-                                    <h4 class="font-semibold text-white">
-                                        Computer Science
-                                    </h4>
+                        <a href="#"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
 
-                                    <p class="text-purple-400 text-sm">
-                                        Sadat Academy
-                                    </p>
 
-                                    <p class="text-gray-500 text-sm mt-1">
+                        <!-- GitHub -->
 
-                                        Second-year student, building a strong
-                                        foundation in programming, databases,
-                                        and data analysis.
+                        <a href="https://github.com/mohandyasser"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="text-gray-400 hover:text-white transition">
 
-                                    </p>
+                            <i class="fab fa-github text-xl"></i>
 
-                                </div>
-
-                            </div>
-
-                        </div>
+                        </a>
 
                     </div>
 
@@ -509,66 +330,46 @@
 
 
 
-                <!-- About Cards -->
+                <!-- Hero Image -->
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="relative flex justify-center section-reveal">
+
+                    <div class="relative">
+
+                        <div class="absolute inset-0 rounded-full bg-white/10 blur-3xl"></div>
+
+                        <img src="profile photo.jpeg"
+                             alt="Mohand Yasser"
+                             class="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border border-white/20 shadow-2xl">
+
+                    </div>
 
 
-                    <div class="glass-card p-6 rounded-2xl text-center hover:border-purple-500/50 transition cursor-pointer group">
+                    <!-- Floating Card 1 -->
 
-                        <i class="fas fa-database text-4xl text-purple-400 mb-3 group-hover:scale-110 transition"></i>
+                    <div class="absolute top-5 right-0 md:right-10 glass-card rounded-2xl px-5 py-4 floating">
 
-                        <h4 class="font-semibold">
-                            Data Processing
-                        </h4>
+                        <p class="text-2xl font-bold">
+                            2+
+                        </p>
 
-                        <p class="text-sm text-gray-500 mt-2">
-                            Cleaning & Transformation
+                        <p class="text-gray-400 text-sm">
+                            Years Learning
                         </p>
 
                     </div>
 
 
-                    <div class="glass-card p-6 rounded-2xl text-center hover:border-purple-500/50 transition cursor-pointer group mt-8">
+                    <!-- Floating Card 2 -->
 
-                        <i class="fas fa-chart-line text-4xl text-blue-400 mb-3 group-hover:scale-110 transition"></i>
+                    <div class="absolute bottom-5 left-0 md:left-10 glass-card rounded-2xl px-5 py-4 floating">
 
-                        <h4 class="font-semibold">
-                            Visualization
-                        </h4>
-
-                        <p class="text-sm text-gray-500 mt-2">
-                            Dashboards & Reports
+                        <p class="text-2xl font-bold">
+                            10+
                         </p>
 
-                    </div>
-
-
-                    <div class="glass-card p-6 rounded-2xl text-center hover:border-purple-500/50 transition cursor-pointer group">
-
-                        <i class="fas fa-brain text-4xl text-pink-400 mb-3 group-hover:scale-110 transition"></i>
-
-                        <h4 class="font-semibold">
-                            Analysis
-                        </h4>
-
-                        <p class="text-sm text-gray-500 mt-2">
-                            Statistical & Predictive
-                        </p>
-
-                    </div>
-
-
-                    <div class="glass-card p-6 rounded-2xl text-center hover:border-purple-500/50 transition cursor-pointer group mt-8">
-
-                        <i class="fas fa-lightbulb text-4xl text-yellow-400 mb-3 group-hover:scale-110 transition"></i>
-
-                        <h4 class="font-semibold">
-                            Insights
-                        </h4>
-
-                        <p class="text-sm text-gray-500 mt-2">
-                            Business Intelligence
+                        <p class="text-gray-400 text-sm">
+                            Projects
                         </p>
 
                     </div>
@@ -583,860 +384,390 @@
 
 
 
-    <!-- ========================================================= -->
-    <!-- Technical Skills -->
-    <!-- ========================================================= -->
+    <!-- ================= ABOUT ================= -->
 
-    <section id="skills" class="py-20 section-reveal bg-white/5">
+    <section id="about"
+             class="py-24">
 
         <div class="max-w-7xl mx-auto px-6">
 
+            <div class="section-reveal">
 
-            <div class="text-center mb-16">
-
-                <h2 class="text-4xl font-bold mb-4">
-
-                    Technical
-                    <span class="gradient-text">
-                        Skills
-                    </span>
-
-                </h2>
-
-
-                <p class="text-gray-400 max-w-2xl mx-auto">
-
-                    Proficient in modern data analysis tools,
-                    programming languages, and machine learning.
-
+                <p class="text-gray-500 uppercase tracking-widest mb-3">
+                    About Me
                 </p>
+
+                <h2 class="text-4xl md:text-5xl font-bold mb-10">
+                    Turning Data Into
+                    <span class="gradient-text">
+                        Insights
+                    </span>
+                </h2>
 
             </div>
 
 
+            <div class="grid md:grid-cols-2 gap-10">
 
-            <!-- ================================================= -->
-            <!-- Skills Grid -->
-            <!-- ================================================= -->
+                <div class="glass-card rounded-3xl p-8 section-reveal">
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16">
+                    <h3 class="text-2xl font-semibold mb-5">
+                        Who I Am
+                    </h3>
+
+                    <p class="text-gray-400 leading-relaxed">
+
+                        I am a Computer Science student in my second year
+                        at Sadat Academy, with a strong interest in Data Analysis
+                        and Data Science.
+
+                        I enjoy working with data, cleaning and exploring datasets,
+                        creating dashboards, and finding useful insights that can
+                        support better decisions.
+
+                    </p>
+
+                </div>
+
+
+                <div class="glass-card rounded-3xl p-8 section-reveal">
+
+                    <h3 class="text-2xl font-semibold mb-5">
+                        Education
+                    </h3>
+
+                    <p class="text-gray-400 mb-2">
+                        Computer Science
+                    </p>
+
+                    <p class="text-white font-semibold mb-2">
+                        Sadat Academy
+                    </p>
+
+                    <p class="text-gray-500">
+                        Second Year Student
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= SKILLS ================= -->
+
+    <section id="skills"
+             class="py-24 bg-white/[0.02]">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="section-reveal">
+
+                <p class="text-gray-500 uppercase tracking-widest mb-3">
+                    Skills
+                </p>
+
+                <h2 class="text-4xl md:text-5xl font-bold mb-12">
+                    Tools & Technologies
+                </h2>
+
+            </div>
+
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
 
 
                 <!-- Python -->
 
-                <div class="skill-icon glass-card p-6 rounded-2xl text-center group cursor-pointer hover:border-yellow-500/50">
+                <div class="skill-tag rounded-2xl p-6 text-center section-reveal">
 
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-yellow-500/10 flex items-center justify-center group-hover:scale-110 transition">
+                    <i class="fab fa-python text-4xl mb-4 skill-icon"></i>
 
-                        <i class="fab fa-python text-3xl text-yellow-400"></i>
-
-                    </div>
-
-                    <h4 class="font-bold text-lg mb-1">
+                    <p class="font-semibold">
                         Python
-                    </h4>
-
-                    <p class="text-xs text-gray-500">
-                        Pandas & NumPy
                     </p>
 
                 </div>
-
 
 
                 <!-- Excel -->
 
-                <div class="skill-icon glass-card p-6 rounded-2xl text-center group cursor-pointer hover:border-green-500/50">
+                <div class="skill-tag rounded-2xl p-6 text-center section-reveal">
 
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/10 flex items-center justify-center group-hover:scale-110 transition">
+                    <i class="fas fa-file-excel text-4xl mb-4 skill-icon"></i>
 
-                        <i class="fas fa-file-excel text-3xl text-green-500"></i>
-
-                    </div>
-
-                    <h4 class="font-bold text-lg mb-1">
+                    <p class="font-semibold">
                         Excel
-                    </h4>
-
-                    <p class="text-xs text-gray-500">
-                        Advanced & Dashboards
                     </p>
 
                 </div>
-
 
 
                 <!-- Power Query -->
 
-                <div class="skill-icon glass-card p-6 rounded-2xl text-center group cursor-pointer hover:border-blue-500/50">
+                <div class="skill-tag rounded-2xl p-6 text-center section-reveal">
 
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-500/10 flex items-center justify-center group-hover:scale-110 transition">
+                    <i class="fas fa-database text-4xl mb-4 skill-icon"></i>
 
-                        <i class="fas fa-stream text-3xl text-blue-400"></i>
-
-                    </div>
-
-                    <h4 class="font-bold text-lg mb-1">
+                    <p class="font-semibold">
                         Power Query
-                    </h4>
-
-                    <p class="text-xs text-gray-500">
-                        ETL & Data Transformation
                     </p>
 
                 </div>
-
 
 
                 <!-- SQL -->
 
-                <div class="skill-icon glass-card p-6 rounded-2xl text-center group cursor-pointer hover:border-orange-500/50">
+                <div class="skill-tag rounded-2xl p-6 text-center section-reveal">
 
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-orange-500/10 flex items-center justify-center group-hover:scale-110 transition">
+                    <i class="fas fa-code text-4xl mb-4 skill-icon"></i>
 
-                        <i class="fas fa-database text-3xl text-orange-400"></i>
-
-                    </div>
-
-                    <h4 class="font-bold text-lg mb-1">
+                    <p class="font-semibold">
                         SQL
-                    </h4>
-
-                    <p class="text-xs text-gray-500">
-                        Querying & Data Analysis
                     </p>
 
                 </div>
-
 
 
                 <!-- Machine Learning -->
 
-                <div class="skill-icon glass-card p-6 rounded-2xl text-center group cursor-pointer hover:border-purple-500/50">
+                <div class="skill-tag rounded-2xl p-6 text-center section-reveal">
 
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:scale-110 transition">
+                    <i class="fas fa-brain text-4xl mb-4 skill-icon"></i>
 
-                        <i class="fas fa-brain text-3xl text-purple-400"></i>
-
-                    </div>
-
-                    <h4 class="font-bold text-lg mb-1">
+                    <p class="font-semibold">
                         Machine Learning
-                    </h4>
-
-                    <p class="text-xs text-gray-500">
-                        Classification & Prediction
                     </p>
 
                 </div>
-
 
 
                 <!-- Power BI -->
 
-                <div class="skill-icon glass-card p-6 rounded-2xl text-center group cursor-pointer hover:border-yellow-500/50">
+                <div class="skill-tag rounded-2xl p-6 text-center section-reveal">
 
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-yellow-500/10 flex items-center justify-center group-hover:scale-110 transition">
+                    <i class="fas fa-chart-column text-4xl mb-4 skill-icon"></i>
 
-                        <i class="fas fa-chart-pie text-3xl text-yellow-400"></i>
-
-                    </div>
-
-                    <h4 class="font-bold text-lg mb-1">
+                    <p class="font-semibold">
                         Power BI
-                    </h4>
-
-                    <p class="text-xs text-gray-500">
-                        DAX & Dashboards
                     </p>
 
                 </div>
 
             </div>
 
-
-
-            <!-- ================================================= -->
-            <!-- Power BI Highlight -->
-            <!-- ================================================= -->
-
-            <div class="glass-card p-8 rounded-3xl border-2 border-yellow-500/30 relative overflow-hidden">
-
-                <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-
-
-                <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
-
-
-                    <div class="w-24 h-24 rounded-2xl bg-yellow-500/20 flex items-center justify-center flex-shrink-0">
-
-                        <i class="fas fa-chart-pie text-5xl text-yellow-400"></i>
-
-                    </div>
-
-
-                    <div class="flex-1 text-center md:text-left">
-
-                        <h3 class="text-2xl font-bold mb-2">
-
-                            Power BI
-                            <span class="text-yellow-400">
-                                Advanced
-                            </span>
-
-                        </h3>
-
-
-                        <p class="text-gray-400 mb-4">
-
-                            Advanced dashboard creation, DAX calculations,
-                            data modeling, and interactive visualizations
-                            for business intelligence solutions.
-
-                        </p>
-
-
-                        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-
-                            <span class="px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-sm">
-                                DAX
-                            </span>
-
-                            <span class="px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-sm">
-                                Data Modeling
-                            </span>
-
-                            <span class="px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-sm">
-                                Power Query
-                            </span>
-
-                            <span class="px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-sm">
-                                Interactive Reports
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ================================================= -->
-            <!-- Skill Categories -->
-            <!-- ================================================= -->
-
-            <div class="grid md:grid-cols-3 gap-8 mt-12">
-
-
-                <!-- Data Analysis -->
-
-                <div class="glass-card p-8 rounded-3xl hover:border-purple-500/30 transition">
-
-                    <div class="w-14 h-14 rounded-2xl bg-purple-600/20 flex items-center justify-center mb-6">
-
-                        <i class="fas fa-chart-line text-2xl text-purple-400"></i>
-
-                    </div>
-
-
-                    <h3 class="text-xl font-bold mb-4">
-                        Data Analysis
-                    </h3>
-
-
-                    <div class="flex flex-wrap gap-2">
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Data Cleaning
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Exploratory Analysis
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Statistical Analysis
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Data Visualization
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Reporting
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- Programming -->
-
-                <div class="glass-card p-8 rounded-3xl hover:border-blue-500/30 transition">
-
-                    <div class="w-14 h-14 rounded-2xl bg-blue-600/20 flex items-center justify-center mb-6">
-
-                        <i class="fas fa-code text-2xl text-blue-400"></i>
-
-                    </div>
-
-
-                    <h3 class="text-xl font-bold mb-4">
-                        Programming
-                    </h3>
-
-
-                    <div class="flex flex-wrap gap-2">
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Python
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            SQL Queries
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Pandas
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            NumPy
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Power Query
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- Tools & Technologies -->
-
-                <div class="glass-card p-8 rounded-3xl hover:border-pink-500/30 transition">
-
-                    <div class="w-14 h-14 rounded-2xl bg-pink-600/20 flex items-center justify-center mb-6">
-
-                        <i class="fas fa-tools text-2xl text-pink-400"></i>
-
-                    </div>
-
-
-                    <h3 class="text-xl font-bold mb-4">
-                        Tools & Technologies
-                    </h3>
-
-
-                    <div class="flex flex-wrap gap-2">
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Power BI
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Microsoft Excel
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Machine Learning
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Streamlit
-                        </span>
-
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">
-                            Dashboard Design
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
         </div>
 
     </section>
 
 
 
-    <!-- ========================================================= -->
-    <!-- Experience Section -->
-    <!-- ========================================================= -->
+    <!-- ================= EXPERIENCE ================= -->
 
-    <section id="experience" class="py-20 section-reveal">
+    <section id="experience"
+             class="py-24">
 
         <div class="max-w-7xl mx-auto px-6">
 
+            <div class="section-reveal">
 
-            <h2 class="text-4xl font-bold mb-12 text-center">
-
-                Work
-                <span class="gradient-text">
+                <p class="text-gray-500 uppercase tracking-widest mb-3">
                     Experience
-                </span>
-
-            </h2>
-
-
-            <div class="max-w-3xl mx-auto">
-
-                <div class="relative border-l-2 border-purple-500/30 ml-6 space-y-12">
-
-
-                    <!-- ================================================= -->
-                    <!-- NTI Experience -->
-                    <!-- ================================================= -->
-
-                    <div class="relative pl-12">
-
-                        <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-purple-600 border-4 border-black"></div>
-
-
-                        <div class="glass-card p-8 rounded-2xl hover:border-purple-500/50 transition">
-
-
-                            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
-
-                                <div>
-
-                                    <h3 class="text-xl font-bold text-white">
-
-                                        Advanced Data Analysis Trainee
-
-                                    </h3>
-
-                                    <p class="text-purple-400">
-
-                                        National Telecommunication Institute (NTI)
-
-                                    </p>
-
-                                </div>
-
-
-                                <span class="px-4 py-1 rounded-full bg-purple-600/20 text-purple-400 text-sm">
-
-                                    Current
-
-                                </span>
-
-                            </div>
-
-
-                            <ul class="space-y-3 text-gray-400">
-
-
-                                <li class="flex items-start gap-2">
-
-                                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-
-                                    <span>
-
-                                        Training in advanced data analysis,
-                                        data preprocessing, exploratory data
-                                        analysis, and data visualization.
-
-                                    </span>
-
-                                </li>
-
-
-                                <li class="flex items-start gap-2">
-
-                                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-
-                                    <span>
-
-                                        Working with Python, Pandas, SQL,
-                                        Excel, and Power BI to analyze and
-                                        visualize datasets.
-
-                                    </span>
-
-                                </li>
-
-
-                                <li class="flex items-start gap-2">
-
-                                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-
-                                    <span>
-
-                                        Applying analytical techniques to
-                                        real-world datasets and developing
-                                        data-driven insights.
-
-                                    </span>
-
-                                </li>
-
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- ================================================= -->
-                    <!-- DEPI Experience -->
-                    <!-- ================================================= -->
-
-                    <div class="relative pl-12">
-
-                        <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-purple-600 border-4 border-black"></div>
-
-
-                        <div class="glass-card p-8 rounded-2xl hover:border-purple-500/50 transition">
-
-
-                            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
-
-                                <div>
-
-                                    <h3 class="text-xl font-bold text-white">
-
-                                        Data Analysis Trainee
-
-                                    </h3>
-
-                                    <p class="text-purple-400">
-
-                                        Digital Egypt Pioneers Initiative (DEPI)
-
-                                    </p>
-
-                                </div>
-
-
-                                <span class="px-4 py-1 rounded-full bg-green-600/20 text-green-400 text-sm">
-
-                                    Completed
-
-                                </span>
-
-                            </div>
-
-
-                            <ul class="space-y-2 text-gray-400">
-
-
-                                <li class="flex items-start gap-2">
-
-                                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-
-                                    <span>
-
-                                        Intensive training in SQL, Python,
-                                        and Data Visualization.
-
-                                    </span>
-
-                                </li>
-
-
-                                <li class="flex items-start gap-2">
-
-                                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-
-                                    <span>
-
-                                        Working on real-world datasets for
-                                        data cleaning and EDA.
-
-                                    </span>
-
-                                </li>
-
-
-                                <li class="flex items-start gap-2">
-
-                                    <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-
-                                    <span>
-
-                                        Creating dashboards to generate
-                                        actionable insights.
-
-                                    </span>
-
-                                </li>
-
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ================================================= -->
-            <!-- Services -->
-            <!-- ================================================= -->
-
-            <div class="mt-20">
-
-                <h3 class="text-2xl font-bold mb-8 text-center">
-
-                    Offered
-                    <span class="gradient-text">
-                        Services
-                    </span>
-
-                </h3>
-
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-
-                    <div class="glass-card p-6 rounded-2xl text-center group hover:bg-white/5 transition cursor-pointer">
-
-                        <i class="fas fa-broom text-3xl text-purple-400 mb-4 group-hover:scale-110 transition"></i>
-
-                        <h4 class="font-semibold mb-2">
-                            Data Cleaning
-                        </h4>
-
-                        <p class="text-sm text-gray-500">
-                            Preprocessing and quality assurance
-                        </p>
-
-                    </div>
-
-
-                    <div class="glass-card p-6 rounded-2xl text-center group hover:bg-white/5 transition cursor-pointer">
-
-                        <i class="fas fa-chart-pie text-3xl text-blue-400 mb-4 group-hover:scale-110 transition"></i>
-
-                        <h4 class="font-semibold mb-2">
-                            Dashboard Creation
-                        </h4>
-
-                        <p class="text-sm text-gray-500">
-                            Interactive Power BI/Excel reports
-                        </p>
-
-                    </div>
-
-
-                    <div class="glass-card p-6 rounded-2xl text-center group hover:bg-white/5 transition cursor-pointer">
-
-                        <i class="fas fa-search-dollar text-3xl text-green-400 mb-4 group-hover:scale-110 transition"></i>
-
-                        <h4 class="font-semibold mb-2">
-                            Business Analysis
-                        </h4>
-
-                        <p class="text-sm text-gray-500">
-                            KPI tracking and insights
-                        </p>
-
-                    </div>
-
-
-                    <div class="glass-card p-6 rounded-2xl text-center group hover:bg-white/5 transition cursor-pointer">
-
-                        <i class="fas fa-file-alt text-3xl text-yellow-400 mb-4 group-hover:scale-110 transition"></i>
-
-                        <h4 class="font-semibold mb-2">
-                            Data Reporting
-                        </h4>
-
-                        <p class="text-sm text-gray-500">
-                            Automated report generation
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ========================================================= -->
-    <!-- Projects Section -->
-    <!-- ========================================================= -->
-
-    <section id="projects" class="py-20 section-reveal bg-white/5">
-
-        <div class="max-w-7xl mx-auto px-6">
-
-
-            <div class="text-center mb-16">
-
-                <h2 class="text-4xl font-bold mb-4">
-
-                    Featured
-                    <span class="gradient-text">
-                        Projects
-                    </span>
-
-                </h2>
-
-
-                <p class="text-gray-400">
-
-                    Interactive dashboards, data analysis,
-                    and machine learning solutions
-
                 </p>
 
+                <h2 class="text-4xl md:text-5xl font-bold mb-12">
+                    Training & Experience
+                </h2>
+
             </div>
 
+
+            <div class="space-y-6">
+
+
+                <!-- NTI -->
+
+                <div class="glass-card rounded-3xl p-8 section-reveal">
+
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
+
+                        <div>
+
+                            <h3 class="text-2xl font-semibold">
+                                Advanced Data Analysis Trainee
+                            </h3>
+
+                            <p class="text-gray-400 mt-2">
+                                National Telecommunication Institute (NTI)
+                            </p>
+
+                        </div>
+
+                        <span class="px-4 py-2 rounded-full bg-white/10 text-sm w-fit">
+                            Current
+                        </span>
+
+                    </div>
+
+
+                    <ul class="space-y-3 text-gray-400">
+
+                        <li>
+                            <i class="fas fa-check mr-2"></i>
+                            Training in advanced data analysis, data preprocessing,
+                            exploratory data analysis, and data visualization.
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check mr-2"></i>
+                            Working with Python, Pandas, SQL, Excel, and Power BI
+                            to analyze and visualize datasets.
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check mr-2"></i>
+                            Applying analytical techniques to real-world datasets
+                            and developing data-driven insights.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- DEPI -->
+
+                <div class="glass-card rounded-3xl p-8 section-reveal">
+
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
+
+                        <div>
+
+                            <h3 class="text-2xl font-semibold">
+                                Data Analysis Trainee
+                            </h3>
+
+                            <p class="text-gray-400 mt-2">
+                                Digital Egypt Pioneers Initiative (DEPI)
+                            </p>
+
+                        </div>
+
+                        <span class="px-4 py-2 rounded-full bg-white/10 text-sm w-fit">
+                            Completed
+                        </span>
+
+                    </div>
+
+
+                    <ul class="space-y-3 text-gray-400">
+
+                        <li>
+                            <i class="fas fa-check mr-2"></i>
+                            Training in data analysis and visualization.
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check mr-2"></i>
+                            Developed interactive dashboards using Excel and Power BI.
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check mr-2"></i>
+                            Worked with data cleaning, Power Query, SQL, and Python.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= PROJECTS ================= -->
+
+    <section id="projects"
+             class="py-24 bg-white/[0.02]">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="section-reveal">
+
+                <p class="text-gray-500 uppercase tracking-widest mb-3">
+                    Portfolio
+                </p>
+
+                <h2 class="text-4xl md:text-5xl font-bold mb-12">
+                    Featured Projects
+                </h2>
+
+            </div>
 
 
             <div class="grid md:grid-cols-2 gap-8">
 
 
-                <!-- ================================================= -->
-                <!-- Project 1 -->
-                <!-- ================================================= -->
+                <!-- Customer Analytics -->
 
-                <div class="project-card glass-card rounded-3xl overflow-hidden group">
+                <div class="project-card glass-card rounded-3xl overflow-hidden section-reveal">
 
-
-                    <div class="dashboard-container relative overflow-hidden h-64 bg-gray-900">
-
+                    <div class="relative h-64 overflow-hidden">
 
                         <img src="customer dashboard.png"
                              alt="Customer Analytics Dashboard"
-                             class="dashboard-preview w-full h-full object-cover object-top">
+                             class="w-full h-full object-cover">
 
+                        <div class="project-overlay absolute inset-0 bg-black/70 flex items-center justify-center">
 
-                        <div class="project-overlay absolute inset-0 bg-black/80 flex items-center justify-center gap-4">
-
-
-                            <button class="px-6 py-3 rounded-full bg-white text-black font-semibold hover:scale-105 transition">
-
-                                <i class="fas fa-eye mr-2"></i>
-
-                                Live Demo
-
-                            </button>
-
-
-                            <button class="px-6 py-3 rounded-full border border-white hover:bg-white/10 transition">
-
-                                <i class="fas fa-code mr-2"></i>
-
-                                Details
-
-                            </button>
-
+                            <span class="px-5 py-2 rounded-full bg-white text-black font-semibold">
+                                Data Analysis
+                            </span>
 
                         </div>
 
                     </div>
 
 
+                    <div class="p-7">
 
-                    <div class="p-8">
+                        <h3 class="text-2xl font-semibold mb-3">
+                            Customer Experience & Feedback Analytics
+                        </h3>
 
+                        <p class="text-gray-400 leading-relaxed mb-5">
 
-                        <div class="flex justify-between items-start mb-4">
-
-
-                            <div>
-
-                                <h3 class="text-2xl font-bold mb-2">
-
-                                    Customer Analytics Dashboard
-
-                                </h3>
-
-                                <p class="text-purple-400 text-sm">
-
-                                    Power BI • Customer Experience
-
-                                </p>
-
-                            </div>
-
-
-                            <div>
-
-                                <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs">
-
-                                    Completed
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <p class="text-gray-400 mb-6">
-
-                            Interactive dashboard analyzing customer
-                            satisfaction, ratings, and experience levels.
-                            Features dynamic filters for gender, visit
-                            purpose, source, and time period analysis.
+                            Analyzed hotel customer feedback using Excel
+                            and Power Query to understand customer satisfaction,
+                            NPS, and feedback trends.
 
                         </p>
 
 
-                        <div class="flex flex-wrap gap-2 mb-6">
+                        <div class="flex flex-wrap gap-2">
 
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                DAX
+                            <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                Excel
                             </span>
 
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                Data Modeling
+                            <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                Power Query
                             </span>
 
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                Visualization
-                            </span>
-
-                        </div>
-
-
-                        <div class="flex gap-4 text-sm text-gray-500 border-t border-white/10 pt-4">
-
-                            <span>
-
-                                <i class="fas fa-star text-yellow-500 mr-1"></i>
-
-                                4.8 Rating
-
-                            </span>
-
-
-                            <span>
-
-                                <i class="fas fa-users text-blue-500 mr-1"></i>
-
-                                616 Total Votes
-
+                            <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                Data Analysis
                             </span>
 
                         </div>
-
 
                     </div>
 
@@ -1444,132 +775,57 @@
 
 
 
-                <!-- ================================================= -->
-                <!-- Project 2 -->
-                <!-- ================================================= -->
+                <!-- Sales Dashboard -->
 
-                <div class="project-card glass-card rounded-3xl overflow-hidden group">
+                <div class="project-card glass-card rounded-3xl overflow-hidden section-reveal">
 
-
-                    <div class="dashboard-container relative overflow-hidden h-64 bg-gray-900">
-
+                    <div class="relative h-64 overflow-hidden">
 
                         <img src="sales dashboard.png"
                              alt="Sales Performance Dashboard"
-                             class="dashboard-preview w-full h-full object-cover object-top">
+                             class="w-full h-full object-cover">
 
+                        <div class="project-overlay absolute inset-0 bg-black/70 flex items-center justify-center">
 
-                        <div class="project-overlay absolute inset-0 bg-black/80 flex items-center justify-center gap-4">
-
-
-                            <button class="px-6 py-3 rounded-full bg-white text-black font-semibold hover:scale-105 transition">
-
-                                <i class="fas fa-eye mr-2"></i>
-
-                                Live Demo
-
-                            </button>
-
-
-                            <button class="px-6 py-3 rounded-full border border-white hover:bg-white/10 transition">
-
-                                <i class="fas fa-code mr-2"></i>
-
-                                Details
-
-                            </button>
-
+                            <span class="px-5 py-2 rounded-full bg-white text-black font-semibold">
+                                Dashboard
+                            </span>
 
                         </div>
 
                     </div>
 
 
+                    <div class="p-7">
 
-                    <div class="p-8">
+                        <h3 class="text-2xl font-semibold mb-3">
+                            Dynamic Sales Performance Dashboard
+                        </h3>
 
+                        <p class="text-gray-400 leading-relaxed mb-5">
 
-                        <div class="flex justify-between items-start mb-4">
-
-
-                            <div>
-
-                                <h3 class="text-2xl font-bold mb-2">
-
-                                    Sales Performance Dashboard
-
-                                </h3>
-
-                                <p class="text-purple-400 text-sm">
-
-                                    Power BI • Business Intelligence
-
-                                </p>
-
-                            </div>
-
-
-                            <div>
-
-                                <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs">
-
-                                    Completed
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <p class="text-gray-400 mb-6">
-
-                            Comprehensive sales monitoring dashboard
-                            tracking revenue, profit, costs, and discounts.
-                            Analyzes trends by month, year, and product
-                            category with interactive slicers.
+                            Built an interactive sales dashboard to analyze
+                            sales performance, profitability, customers,
+                            products, regions, and time-based trends.
 
                         </p>
 
 
-                        <div class="flex flex-wrap gap-2 mb-6">
+                        <div class="flex flex-wrap gap-2">
 
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                Financial Analysis
+                            <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                Excel
                             </span>
 
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                Trend Analysis
+                            <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                Power Query
                             </span>
 
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                KPI Tracking
-                            </span>
-
-                        </div>
-
-
-                        <div class="flex gap-4 text-sm text-gray-500 border-t border-white/10 pt-4">
-
-                            <span>
-
-                                <i class="fas fa-euro-sign text-green-500 mr-1"></i>
-
-                                1.3M€ Sales
-
-                            </span>
-
-
-                            <span>
-
-                                <i class="fas fa-shopping-bag text-purple-500 mr-1"></i>
-
-                                3,678 Orders
-
+                            <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                Dashboard
                             </span>
 
                         </div>
-
 
                     </div>
 
@@ -1577,78 +833,25 @@
 
 
 
-                <!-- ================================================= -->
-                <!-- Project 3: Airline Flight Delay -->
-                <!-- ================================================= -->
+                <!-- ================= AIRLINE PROJECT ================= -->
 
-                <div class="project-card glass-card rounded-3xl overflow-hidden group md:col-span-2">
+                <div class="project-card glass-card rounded-3xl overflow-hidden section-reveal md:col-span-2">
 
-
-                    <div class="dashboard-container relative overflow-hidden h-80 bg-gray-900">
+                    <div class="grid lg:grid-cols-2">
 
 
-                        <img src="airline flight delay.png"
-                             alt="Airline Flight Delay Prediction & Analysis"
-                             class="dashboard-preview w-full h-full object-cover object-top">
+                        <!-- Image -->
 
+                        <div class="relative h-full min-h-[350px] overflow-hidden">
 
-                        <div class="project-overlay absolute inset-0 bg-black/80 flex items-center justify-center gap-4">
+                            <img src="airline flight delay.png"
+                                 alt="Airline Flight Delay Prediction and Analysis"
+                                 class="w-full h-full object-cover">
 
+                            <div class="project-overlay absolute inset-0 bg-black/70 flex items-center justify-center">
 
-                            <button class="px-6 py-3 rounded-full bg-white text-black font-semibold hover:scale-105 transition">
-
-                                <i class="fas fa-eye mr-2"></i>
-
-                                View Project
-
-                            </button>
-
-
-                            <button class="px-6 py-3 rounded-full border border-white hover:bg-white/10 transition">
-
-                                <i class="fas fa-code mr-2"></i>
-
-                                Details
-
-                            </button>
-
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="p-8">
-
-
-                        <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
-
-
-                            <div>
-
-                                <h3 class="text-2xl font-bold mb-2">
-
-                                    Airline Flight Delay Prediction & Analysis
-
-                                </h3>
-
-
-                                <p class="text-purple-400 text-sm">
-
-                                    Python • Machine Learning • Power BI • Streamlit
-
-                                </p>
-
-                            </div>
-
-
-                            <div>
-
-                                <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs">
-
-                                    Completed
-
+                                <span class="px-5 py-2 rounded-full bg-white text-black font-semibold">
+                                    Machine Learning
                                 </span>
 
                             </div>
@@ -1656,181 +859,163 @@
                         </div>
 
 
+                        <!-- Content -->
 
-                        <p class="text-gray-400 mb-6 leading-relaxed">
+                        <div class="p-8 lg:p-10">
 
-                            Graduation project at NTI analyzing 544K+ flight
-                            records to identify delay patterns and build a
-                            machine learning solution for predicting
-                            arrival delays.
+                            <div class="flex items-center gap-3 mb-4">
 
-                        </p>
+                                <span class="px-3 py-1 rounded-full bg-white/10 text-sm">
+                                    Graduation Project
+                                </span>
+
+                                <span class="text-gray-500">
+                                    NTI
+                                </span>
+
+                            </div>
 
 
+                            <h3 class="text-3xl font-semibold mb-4">
+                                Airline Flight Delay Prediction & Analysis
+                            </h3>
 
-                        <ul class="space-y-3 text-gray-400 mb-6">
+
+                            <p class="text-gray-400 leading-relaxed mb-6">
+
+                                Graduation project at NTI analyzing 544K+ flight
+                                records to identify delay patterns and build
+                                a machine learning solution for predicting
+                                arrival delays.
+
+                            </p>
 
 
-                            <li class="flex items-start gap-2">
+                            <ul class="space-y-3 text-gray-400 mb-7">
 
-                                <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-
-                                <span>
-
+                                <li>
+                                    <i class="fas fa-check mr-2"></i>
                                     Cleaned and prepared 544K+ flight records,
                                     handling missing values and inconsistent formats.
+                                </li>
 
-                                </span>
+                                <li>
+                                    <i class="fas fa-check mr-2"></i>
+                                    Performed exploratory data analysis to identify
+                                    delay drivers across airlines, routes, and time.
+                                </li>
 
-                            </li>
-
-
-                            <li class="flex items-start gap-2">
-
-                                <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-
-                                <span>
-
-                                    Performed exploratory analysis to identify
-                                    key delay drivers across carriers, routes,
-                                    and time of day.
-
-                                </span>
-
-                            </li>
-
-
-                            <li class="flex items-start gap-2">
-
-                                <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-
-                                <span>
-
+                                <li>
+                                    <i class="fas fa-check mr-2"></i>
                                     Trained and compared Logistic Regression
-                                    and Decision Tree models, achieving an
-                                    F1 score of 0.79.
+                                    and Decision Tree classification models.
+                                </li>
 
-                                </span>
+                                <li>
+                                    <i class="fas fa-check mr-2"></i>
+                                    Achieved an F1 Score of 0.79, exceeding the
+                                    project target of 0.70.
+                                </li>
 
-                            </li>
-
-
-                            <li class="flex items-start gap-2">
-
-                                <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-
-                                <span>
-
+                                <li>
+                                    <i class="fas fa-check mr-2"></i>
                                     Deployed the final model as an interactive
-                                    Streamlit app for real-time delay-risk
-                                    predictions.
+                                    Streamlit application for real-time predictions.
+                                </li>
 
-                                </span>
-
-                            </li>
-
-
-                            <li class="flex items-start gap-2">
-
-                                <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-
-                                <span>
-
-                                    Built a 5-page Power BI dashboard visualizing
+                                <li>
+                                    <i class="fas fa-check mr-2"></i>
+                                    Built a 5-page Power BI dashboard to visualize
                                     airline performance and flight delay patterns.
+                                </li>
 
+                            </ul>
+
+
+                            <!-- Tags -->
+
+                            <div class="flex flex-wrap gap-2 mb-8">
+
+                                <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                    Python
                                 </span>
 
-                            </li>
+                                <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                    Pandas
+                                </span>
+
+                                <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                    Machine Learning
+                                </span>
+
+                                <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                    Logistic Regression
+                                </span>
+
+                                <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                    Decision Tree
+                                </span>
+
+                                <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                    Streamlit
+                                </span>
+
+                                <span class="px-3 py-1 rounded-full bg-white/5 text-sm">
+                                    Power BI
+                                </span>
+
+                            </div>
 
 
-                        </ul>
+                            <!-- Stats -->
+
+                            <div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
+
+                                <div>
+
+                                    <p class="text-2xl font-bold">
+                                        544K+
+                                    </p>
+
+                                    <p class="text-gray-500 text-sm">
+                                        Records
+                                    </p>
+
+                                </div>
 
 
+                                <div>
 
-                        <!-- Project Skills -->
+                                    <p class="text-2xl font-bold">
+                                        0.79
+                                    </p>
 
-                        <div class="flex flex-wrap gap-2 mb-6">
+                                    <p class="text-gray-500 text-sm">
+                                        F1 Score
+                                    </p>
 
-
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                Python
-                            </span>
-
-
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                Pandas
-                            </span>
+                                </div>
 
 
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                Machine Learning
-                            </span>
+                                <div>
 
+                                    <p class="text-2xl font-bold">
+                                        5
+                                    </p>
 
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                Logistic Regression
-                            </span>
+                                    <p class="text-gray-500 text-sm">
+                                        Dashboard Pages
+                                    </p>
 
+                                </div>
 
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                Decision Tree
-                            </span>
-
-
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                Streamlit
-                            </span>
-
-
-                            <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                                Power BI
-                            </span>
-
-
-                        </div>
-
-
-
-                        <!-- Project Stats -->
-
-                        <div class="flex flex-wrap gap-6 text-sm text-gray-500 border-t border-white/10 pt-4">
-
-
-                            <span>
-
-                                <i class="fas fa-database text-purple-500 mr-1"></i>
-
-                                544K+ Records
-
-                            </span>
-
-
-                            <span>
-
-                                <i class="fas fa-chart-line text-blue-500 mr-1"></i>
-
-                                F1 Score: 0.79
-
-                            </span>
-
-
-                            <span>
-
-                                <i class="fas fa-chart-pie text-yellow-500 mr-1"></i>
-
-                                5 Dashboard Pages
-
-                            </span>
-
+                            </div>
 
                         </div>
-
 
                     </div>
 
                 </div>
-
 
             </div>
 
@@ -1840,156 +1025,84 @@
 
 
 
-    <!-- ========================================================= -->
-    <!-- Contact Section -->
-    <!-- ========================================================= -->
+    <!-- ================= CONTACT ================= -->
 
-    <section id="contact" class="py-20 section-reveal relative">
+    <section id="contact"
+             class="py-24">
 
+        <div class="max-w-4xl mx-auto px-6 text-center">
 
-        <div class="blob w-96 h-96 bg-purple-600/30 rounded-full bottom-0 left-1/2 transform -translate-x-1/2"></div>
+            <div class="section-reveal">
 
+                <p class="text-gray-500 uppercase tracking-widest mb-3">
+                    Contact
+                </p>
 
-        <div class="max-w-4xl mx-auto px-6 relative z-10">
-
-
-            <div class="glass-card rounded-3xl p-8 md:p-12 text-center">
-
-
-                <h2 class="text-4xl font-bold mb-4">
-
+                <h2 class="text-4xl md:text-6xl font-bold mb-6">
                     Let's Work
                     <span class="gradient-text">
                         Together
                     </span>
-
                 </h2>
 
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
 
-                <p class="text-gray-400 mb-12 max-w-lg mx-auto">
-
-                    Have a project in mind?
-                    Let's discuss how I can help transform
-                    your data into actionable insights.
+                    I'm always interested in new opportunities,
+                    projects, and collaborations related to data analysis
+                    and data science.
 
                 </p>
 
 
-
-                <div class="grid md:grid-cols-3 gap-6 mb-12">
-
-
-                    <!-- Phone -->
-
-                    <a href="tel:+2001014623795"
-                       class="glass-card p-6 rounded-2xl hover:border-purple-500/50 transition group">
-
-
-                        <div class="w-12 h-12 rounded-full bg-purple-600/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-
-                            <i class="fas fa-phone text-purple-400"></i>
-
-                        </div>
-
-
-                        <h4 class="font-semibold mb-1">
-                            Phone
-                        </h4>
-
-
-                        <p class="text-sm text-gray-400">
-                            +20 01014623795
-                        </p>
-
-
-                    </a>
-
+                <div class="flex flex-wrap justify-center gap-4">
 
 
                     <!-- Email -->
 
-                    <a href="mailto:mohandyasserhussein@gmail.com"
-                       class="glass-card p-6 rounded-2xl hover:border-purple-500/50 transition group">
+                    <a href="mailto:mohand.yasser@example.com"
+                       class="contact-btn glass-card px-6 py-3 rounded-full flex items-center gap-3">
 
+                        <i class="fas fa-envelope"></i>
 
-                        <div class="w-12 h-12 rounded-full bg-blue-600/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-
-                            <i class="fas fa-envelope text-blue-400"></i>
-
-                        </div>
-
-
-                        <h4 class="font-semibold mb-1">
-                            Email
-                        </h4>
-
-
-                        <p class="text-sm text-gray-400">
-                            mohandyasserhussein@gmail.com
-                        </p>
-
+                        <span>
+                            Email Me
+                        </span>
 
                     </a>
 
+
+                    <!-- GitHub -->
+
+                    <a href="https://github.com/mohandyasser"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="contact-btn glass-card px-6 py-3 rounded-full flex items-center gap-3">
+
+                        <i class="fab fa-github"></i>
+
+                        <span>
+                            GitHub
+                        </span>
+
+                    </a>
 
 
                     <!-- LinkedIn -->
 
-                    <a href="https://www.linkedin.com/in/mohandyasser"
+                    <a href="#"
                        target="_blank"
-                       class="glass-card p-6 rounded-2xl hover:border-purple-500/50 transition group">
-
-
-                        <div class="w-12 h-12 rounded-full bg-blue-600/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-
-                            <i class="fab fa-linkedin text-blue-400"></i>
-
-                        </div>
-
-
-                        <h4 class="font-semibold mb-1">
-                            LinkedIn
-                        </h4>
-
-
-                        <p class="text-sm text-gray-400">
-                            /in/mohandyasser
-                        </p>
-
-
-                    </a>
-
-
-                </div>
-
-
-
-                <div class="flex justify-center gap-4">
-
-
-                    <a href="mailto:mohandyasserhussein@gmail.com"
-                       class="contact-btn px-8 py-4 rounded-full font-semibold text-white flex items-center gap-2">
-
-                        <i class="fas fa-paper-plane"></i>
-
-                        Send Message
-
-                    </a>
-
-
-                    <a href="https://www.linkedin.com/in/mohandyasser"
-                       target="_blank"
-                       class="px-8 py-4 rounded-full border border-white/20 font-semibold hover:bg-white/5 transition flex items-center gap-2">
+                       rel="noopener noreferrer"
+                       class="contact-btn glass-card px-6 py-3 rounded-full flex items-center gap-3">
 
                         <i class="fab fa-linkedin"></i>
 
-                        View LinkedIn
+                        <span>
+                            LinkedIn
+                        </span>
 
                     </a>
 
-
                 </div>
-
 
             </div>
 
@@ -1999,54 +1112,43 @@
 
 
 
-    <!-- ========================================================= -->
-    <!-- Footer -->
-    <!-- ========================================================= -->
+    <!-- ================= FOOTER ================= -->
 
-    <footer class="border-t border-white/10 py-8 mt-20">
+    <footer class="border-t border-white/10 py-8">
 
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="max-w-7xl mx-auto px-6">
 
+            <div class="flex flex-col md:flex-row items-center justify-between gap-5">
 
-            <div class="text-2xl font-bold gradient-text">
-                MY.
-            </div>
-
-
-            <p class="text-gray-500 text-sm">
-
-                © 2026 Mohand Yasser. All rights reserved.
-
-            </p>
+                <p class="text-gray-500 text-sm">
+                    © 2026 Mohand Yasser. All rights reserved.
+                </p>
 
 
-            <div class="flex gap-4">
+                <div class="flex items-center gap-5">
+
+                    <!-- GitHub -->
+
+                    <a href="https://github.com/mohandyasser"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="text-gray-500 hover:text-white transition">
+
+                        <i class="fab fa-github text-lg"></i>
+
+                    </a>
 
 
-                <a href="https://www.linkedin.com/in/mohandyasser"
-                   target="_blank"
-                   class="text-gray-400 hover:text-white transition text-xl">
+                    <!-- LinkedIn -->
 
-                    <i class="fab fa-linkedin"></i>
+                    <a href="#"
+                       class="text-gray-500 hover:text-white transition">
 
-                </a>
+                        <i class="fab fa-linkedin text-lg"></i>
 
+                    </a>
 
-                <a href="#"
-                   class="text-gray-400 hover:text-white transition text-xl">
-
-                    <i class="fab fa-github"></i>
-
-                </a>
-
-
-                <a href="#"
-                   class="text-gray-400 hover:text-white transition text-xl">
-
-                    <i class="fab fa-twitter"></i>
-
-                </a>
-
+                </div>
 
             </div>
 
@@ -2056,202 +1158,62 @@
 
 
 
-    <!-- ========================================================= -->
-    <!-- JavaScript -->
-    <!-- ========================================================= -->
+    <!-- ================= JAVASCRIPT ================= -->
 
     <script>
-
-
-        // Register ScrollTrigger
 
         gsap.registerPlugin(ScrollTrigger);
 
 
+        // Hero animation
 
-        // =========================================================
-        // Hero Animation
-        // =========================================================
+        gsap.utils.toArray(".section-reveal").forEach((element) => {
 
-        gsap.from(".hero-content > *", {
+            gsap.fromTo(
+                element,
 
-            y: 50,
+                {
+                    opacity: 0,
+                    y: 30
+                },
 
-            opacity: 0,
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
 
-            duration: 1,
-
-            stagger: 0.2,
-
-            ease: "power3.out"
-
-        });
-
-
-
-        // =========================================================
-        // Section Reveals
-        // =========================================================
-
-        gsap.utils.toArray('.section-reveal').forEach(section => {
-
-            gsap.to(section, {
-
-                opacity: 1,
-
-                y: 0,
-
-                duration: 1,
-
-                ease: "power3.out",
-
-                scrollTrigger: {
-
-                    trigger: section,
-
-                    start: "top 80%",
-
-                    toggleActions: "play none none reverse"
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
 
                 }
-
-            });
-
-        });
-
-
-
-        // =========================================================
-        // Skills Animation
-        // =========================================================
-
-        gsap.from(".skill-icon", {
-
-            scale: 0.8,
-
-            opacity: 0,
-
-            duration: 0.6,
-
-            stagger: 0.1,
-
-            ease: "back.out(1.7)",
-
-            scrollTrigger: {
-
-                trigger: "#skills",
-
-                start: "top 70%"
-
-            }
+            );
 
         });
 
 
+        // Navbar background on scroll
 
-        // =========================================================
-        // Smooth Scroll
-        // =========================================================
+        window.addEventListener("scroll", function () {
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-            anchor.addEventListener('click', function (e) {
-
-                e.preventDefault();
-
-                const target = document.querySelector(
-                    this.getAttribute('href')
-                );
-
-                if (target) {
-
-                    target.scrollIntoView({
-
-                        behavior: 'smooth',
-
-                        block: 'start'
-
-                    });
-
-                }
-
-            });
-
-        });
-
-
-
-        // =========================================================
-        // Dynamic Navbar Background
-        // =========================================================
-
-        window.addEventListener('scroll', () => {
-
-            const nav = document.querySelector('nav');
-
+            const navbar = document.querySelector("nav");
 
             if (window.scrollY > 50) {
 
-                nav.classList.add('bg-black/95');
+                navbar.classList.add("bg-black/90");
 
-                nav.classList.remove('bg-black/80');
+            } else {
 
-            }
-
-            else {
-
-                nav.classList.add('bg-black/80');
-
-                nav.classList.remove('bg-black/95');
+                navbar.classList.remove("bg-black/90");
 
             }
 
         });
-
-
-
-        // =========================================================
-        // Interactive Project Cards
-        // =========================================================
-
-        document.querySelectorAll('.project-card').forEach(card => {
-
-
-            card.addEventListener('mouseenter', () => {
-
-                gsap.to(card, {
-
-                    y: -10,
-
-                    duration: 0.3,
-
-                    ease: "power2.out"
-
-                });
-
-            });
-
-
-            card.addEventListener('mouseleave', () => {
-
-                gsap.to(card, {
-
-                    y: 0,
-
-                    duration: 0.3,
-
-                    ease: "power2.out"
-
-                });
-
-            });
-
-
-        });
-
 
     </script>
-
 
 </body>
 </html>
